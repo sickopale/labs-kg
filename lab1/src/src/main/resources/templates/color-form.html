@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Выбор цвета</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Odibee+Sans&family=Tilt+Neon&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+<h1>Выберите цвет:</h1>
+<div id="color-form" class="mainContainer">
+    <h2>RGB</h2>
+    <div class="palette">
+        <div class="container">
+            <div class="row">
+                <label for="red">Красный (0-255):</label>
+                <div><input onchange="updateColor" type="range" id="red" name="red" min="0" max="255" data-type="rgb">
+                    <span id="red-value">0</span></div>
+
+
+            </div>
+            <div class="row">
+                <label for="green">Зеленый (0-255):</label>
+                <div>
+                    <input onchange="updateColor" type="range" id="green" name="green" min="0" max="255"
+                           data-type="rgb">
+                    <span id="green-value">0</span>
+                </div>
+
+            </div>
+            <div class="row">
+                <label for="blue">Синий (0-255):</label>
+                <div>
+                    <input onchange="updateColor" type="range" id="blue" name="blue" min="0" max="255" data-type="rgb">
+                    <span id="blue-value">0</span>
+                </div>
+
+            </div>
+        </div>
+        <div id="color-previewRGB" class="preview" >
+
+        </div>
+    </div>
+
+    <h2>CMYK</h2>
+    <div class="palette">
+        <div class="container">
+            <div class="row">
+                <label class="test" for="cyan">Циан (0-100):</label>
+                <div>
+                    <input onchange="updateColor()" type="range" id="cyan" name="cyan" min="0" max="100"
+                           data-type="cmyk">
+                    <span id="cyan-value">0</span>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <label for="magenta">Маджента (0-100):</label>
+                <div>
+                    <input onchange="updateColor()" type="range" id="magenta" name="magenta" min="0" max="100"
+                           data-type="cmyk">
+                    <span id="magenta-value">0</span>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <label for="yellow">Желтый (0-100):</label>
+                <div>
+                    <input onchange="updateColor()" type="range" id="yellow" name="yellow" min="0" max="100"
+                           data-type="cmyk">
+                    <span id="yellow-value">0</span>
+                </div>
+
+            </div>
+            <div class="row">
+                <label for="black">Черный (0-100):</label>
+                <div>
+                    <input onchange="updateColor()" type="range" id="black" name="black" min="0" max="100"
+                           data-type="cmyk">
+                    <span id="black-value">0</span>
+                </div>
+
+            </div>
+        </div>
+        <div id="color-previewCMYK" class="preview">
+
+        </div>
+    </div>
+
+    <h2>HLS</h2>
+
+    <div class="palette">
+        <div class="container">
+            <div class="row">
+                <label for="hue">Тон (0-360):</label>
+                <div>
+                    <input onchange="updateColor()" type="range" id="hue" name="hue" min="0" max="360" data-type="hls">
+                    <span id="hue-value">0</span>
+                </div>
+
+            </div>
+            <div class="row">
+                <label for="lightness">Светлота (0-100):</label>
+                <div>
+                    <input onchange="updateColor()" type="range" id="lightness" name="lightness" min="0" max="100"
+                           data-type="hls">
+                    <span id="lightness-value">0</span>
+                </div>
+
+            </div>
+            <div class="row">
+                <label for="saturation">Насыщенность (0-100):</label>
+                <div>
+                    <input onchange="updateColor()" type="range" id="saturation" name="saturation" min="0" max="100"
+                           data-type="hls">
+                    <span id="saturation-value">0</span>
+                </div>
+
+            </div>
+        </div>
+        <div  id="color-previewHLS" class="preview">
+        </div>
+    </div>
+
+</div>
+</body>
+
+<script>
+
+    const redInput = document.getElementById('red');
+    const greenInput = document.getElementById('green');
+    const blueInput = document.getElementById('blue');
+    const cyanInput = document.getElementById('cyan');
+    const magentaInput = document.getElementById('magenta');
+    const yellowInput = document.getElementById('yellow');
+    const blackInput = document.getElementById('black');
+    const hueInput = document.getElementById('hue');
+    const lightnessInput = document.getElementById('lightness');
+    const saturationInput = document.getElementById('saturation');
+    const colorPreviewRGB = document.getElementById('color-previewRGB');
+    const colorPreviewCMYK = document.getElementById('color-previewCMYK');
+    const colorPreviewHLS = document.getElementById('color-previewHLS');
+
+    function updateColor(e) {
+
+        const target = e.target;
+
+        const red = redInput.value;
+        const green = greenInput.value;
+        const blue = blueInput.value;
+        const cyan = cyanInput.value;
+        const magenta = magentaInput.value;
+        const yellow = yellowInput.value;
+        const black = blackInput.value;
+        const hue = hueInput.value;
+        const lightness = lightnessInput.value;
+        const saturation = saturationInput.value;
+
+
+        document.getElementById('red-value').textContent = red;
+        document.getElementById('green-value').textContent = green;
+        document.getElementById('blue-value').textContent = blue;
+        document.getElementById('cyan-value').textContent = cyan;
+        document.getElementById('magenta-value').textContent = magenta;
+        document.getElementById('yellow-value').textContent = yellow;
+        document.getElementById('black-value').textContent = black;
+        document.getElementById('hue-value').textContent = hue;
+        document.getElementById('lightness-value').textContent = lightness;
+        document.getElementById('saturation-value').textContent = saturation;
+
+
+        if (target.id == "red" || target.id == "green" || target.id == "blue") {
+
+            const rgbColor = `rgb(${red}, ${green}, ${blue})`;
+
+            let h = 0, l = 0, s = 0;
+            [h, l, s] = rgbToHls(red, green, blue);
+
+            let c = 0, m = 0, y = 0, k = 0;
+            [c, m, y, k] = rgbToCmyk(red, green, blue);
+
+            const hlsColor = `hsl(${h}, ${l}%, ${s}%)`;
+
+            document.getElementById('hue-value').textContent = h;
+            document.getElementById('hue').value = h;
+
+            document.getElementById('lightness-value').textContent = l;
+            document.getElementById('lightness').value = l;
+
+            document.getElementById('saturation-value').textContent = s;
+            document.getElementById('saturation').value = s;
+
+            document.getElementById('cyan-value').textContent = c;
+            document.getElementById('cyan').value = c;
+
+            document.getElementById('magenta-value').textContent = m;
+            document.getElementById('magenta').value = m;
+
+            document.getElementById('yellow-value').textContent = y;
+            document.getElementById('yellow').value = y;
+
+            document.getElementById('black-value').textContent = k;
+            document.getElementById('black').value = k;
+
+            colorPreviewRGB.style.backgroundColor = rgbColor;
+            colorPreviewCMYK.style.backgroundColor = rgbColor;
+            colorPreviewHLS.style.backgroundColor = hlsColor;
+        }
+
+        else
+        if (target.id == "cyan" || target.id == "magenta" || target.id == "yellow" || target.id == "black") {
+
+
+            let red = 0, green = 0, blue = 0;
+            [red, green, blue] = cmykToRgb(cyan, magenta, yellow, black);
+
+            let h = 0, l = 0, s = 0;
+            [h, l, s] = rgbToHls(red, green, blue);
+
+            const hlsColor = `hsl(${h}, ${l}%, ${s}%)`;
+            const rgbColor = `rgb(${red}, ${green}, ${blue})`;
+
+            document.getElementById('red-value').textContent = red;
+            document.getElementById('red').value = red;
+
+            document.getElementById('green-value').textContent = green;
+            document.getElementById('green').value = green;
+
+            document.getElementById('blue-value').textContent = blue;
+            document.getElementById('blue').value = blue;
+
+            document.getElementById('hue-value').textContent = h;
+            document.getElementById('hue').value = h;
+
+            document.getElementById('lightness-value').textContent = l;
+            document.getElementById('lightness').value = l;
+
+            document.getElementById('saturation-value').textContent = s;
+            document.getElementById('saturation').value = s;
+
+
+
+
+            colorPreviewRGB.style.backgroundColor = rgbColor;
+            colorPreviewCMYK.style.backgroundColor = rgbColor;
+            colorPreviewHLS.style.backgroundColor = hlsColor;
+        }
+
+        else
+        if (target.id == "hue" || target.id == "saturation" || target.id == "lightness" ) {
+
+
+            let red = 0, green = 0, blue = 0;
+            [red, green, blue] = hlsToRgb(hue,lightness,saturation);
+
+            let c = 0, m = 0, y = 0, k = 0;
+            [c, m, y, k] = rgbToCmyk(red, green, blue);
+
+
+            const hlsColor = `hsl(${hue}, ${lightness}%, ${saturation}%)`;
+            const rgbColor = `rgb(${red}, ${green}, ${blue})`;
+
+            document.getElementById('red-value').textContent = red;
+            document.getElementById('red').value = red;
+
+            document.getElementById('green-value').textContent = green;
+            document.getElementById('green').value = green;
+
+            document.getElementById('blue-value').textContent = blue;
+            document.getElementById('blue').value = blue;
+
+            document.getElementById('cyan-value').textContent = c;
+            document.getElementById('cyan').value = c;
+
+            document.getElementById('magenta-value').textContent = m;
+            document.getElementById('magenta').value = m;
+
+            document.getElementById('yellow-value').textContent = y;
+            document.getElementById('yellow').value = y;
+
+            document.getElementById('black-value').textContent = k;
+            document.getElementById('black').value = k;
+
+
+
+
+            colorPreviewRGB.style.backgroundColor = rgbColor;
+            colorPreviewCMYK.style.backgroundColor = rgbColor;
+            colorPreviewHLS.style.backgroundColor = hlsColor;
+        }
+    }
+
+
+    redInput.addEventListener('input', updateColor);
+    greenInput.addEventListener('input', updateColor);
+    blueInput.addEventListener('input', updateColor);
+    cyanInput.addEventListener('input', updateColor);
+    magentaInput.addEventListener('input', updateColor);
+    yellowInput.addEventListener('input', updateColor);
+    blackInput.addEventListener('input', updateColor);
+    hueInput.addEventListener('input', updateColor);
+    lightnessInput.addEventListener('input', updateColor);
+    saturationInput.addEventListener('input', updateColor);
+
+
+    updateColor();
+
+</script>
+
+</html>
